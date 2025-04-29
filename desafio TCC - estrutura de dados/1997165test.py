@@ -139,29 +139,27 @@ def menu_operacoes():
         print("5. Listar pendências de avaliação")
         print("6. Gerar relatório do orientador")
         print("7. Voltar ao menu principal")
-        
-        opcao = input("Escolha uma opção: ")
-        
-        match opcao:
-            case "1":
-                registrar_entrega()
-            case "2":
-                registrar_nota()
-            case "3":
-                listar_alunos_por_orientador()
-            case "4":
-                listar_entregas_por_aluno()
-            case "5":
-                listar_pendencias()
-            case "6":
-                gerar_relatorio_orientador()
-            case "7":
-                break
-            case "q" | "Q":
-                exit()
-            case _:
-                print("Opção inválida.")
 
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "7":
+            return
+        elif opcao == "q" or opcao == "Q":
+            exit()
+        else:
+            opcao_dict = {
+                "1": registrar_entrega,
+                "2": registrar_nota,
+                "3": listar_alunos_por_orientador,
+                "4": listar_entregas_por_aluno,
+                "5": listar_pendencias,
+                "6": gerar_relatorio_orientador
+            }
+            if opcao in opcao_dict:
+                opcao_dict[opcao]()
+            else:
+                print("Erro: Opção inválida. Por favor, escolha uma opção válida.")
+ 
 def main():
     while True:
         print("\n--- Menu Principal ---")
@@ -169,20 +167,19 @@ def main():
         print("2. Cadastrar aluno")
         print("3. Operações")
         print("q. Sair")
-        
-        opcao = input("Escolha uma opção: ")
-        
-        match opcao:
-            case "1":
-                cadastrar_orientador()
-            case "2":
-                cadastrar_aluno()
-            case "3":
-                menu_operacoes()
-            case "q" | "Q":
-                break
-            case _:
-                print("''Opção inválida.''")
 
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            cadastrar_orientador()
+        elif opcao == "2":
+            cadastrar_aluno()
+        elif opcao == "3":
+            menu_operacoes()
+        elif opcao == "q" or opcao == "Q":
+            break
+        else:
+            print("Erro: Opção inválida. Por favor, escolha uma opção válida.")
+ 
 if __name__ == "__main__":
-    main()
+     main()
